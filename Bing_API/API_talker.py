@@ -7,7 +7,7 @@ class API_talker:
 
     def __init__(self):
         # innitilisation
-        api_key = "e5374b4ddc834dbbb0b9b019cd490504"
+        api_key = "72fd20d0c13b4acdb65905ade4d2d6b5"
         self.endpoint = "https://api.bing.microsoft.com/v7.0/spellcheck"
         self.params = {'mkt': 'en-GB', 'mode': 'proof'}
         self.headers = {

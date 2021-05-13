@@ -1,14 +1,14 @@
 import time
 from symspellpy import SymSpell, Verbosity
 
-class pySpell:
+class symSpell:
 
-    def __init__(self):
+    def __init__(self, path):
         #innitilisation
         #lowwer prefix number seems to have quicker load times
         #max edit distance affecs the max distance allowed, its kinda dumb ngl
         self.sym_spell = SymSpell(max_dictionary_edit_distance=6, prefix_length=7)
-        self.dictionary_path = "D:\github\Dissertation\\venv\Lib\site-packages\symspellpy\\frequency_dictionary_en_82_765.txt"
+        self.dictionary_path = path
         # term_index is the column of the term and count_index is the
         # column of the term frequency
         self.sym_spell.load_dictionary(self.dictionary_path, term_index=0, count_index=1)
@@ -25,4 +25,3 @@ class pySpell:
         # (max_edit_distance_lookup <= max_dictionary_edit_distance)
         suggestions = self.sym_spell.lookup_compound(sentance, max_edit_distance=6)
         return suggestions
-
