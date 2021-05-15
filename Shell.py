@@ -25,6 +25,8 @@ suggestions_pho = Pon_Speller.lookup(word)
 # translator as well as lists of suggestions
 master_list = SuggestionWeigher.suggestion_weigher(translator, suggestions_sym, suggestions_pho)
 
+for word in master_list:
+    print(word)
 
 
 
