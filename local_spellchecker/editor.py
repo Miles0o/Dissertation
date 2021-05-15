@@ -1,6 +1,6 @@
-read = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'r')
-master = open('D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt', 'r')
-write = open('/local_spellchecker/before fix.txt', 'a')
+#read = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'r')
+#master = open('D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt', 'r')
+#write = open('/local_spellchecker/before fix.txt', 'a')
 
 Lines = read.readlines()
 check = master.readlines()

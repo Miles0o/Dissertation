@@ -1,3 +1,5 @@
+import json
+
 read = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'r')
 master = open('D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt', 'r')
 
@@ -14,5 +16,8 @@ for line in Lines:
         translator[split[0]] = [split_check[0]]
     else:
         translator[split[0]].append(split_check[0])
-        
-    i+=1
+
+    i += 1
+
+#with open('D:\github\Dissertation\local_spellchecker\\translator.json', 'w') as fp:
+    #json.dump(translator, fp)

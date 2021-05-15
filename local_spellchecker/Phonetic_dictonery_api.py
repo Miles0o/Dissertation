@@ -4,8 +4,8 @@ import json
 api = datamuse.Datamuse()
 #line = api.words(sp="won't", qe='sp', md='r', max=1)
 
-read = open('D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt', 'r')
-write = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'a')
+#read = open('D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt', 'r')
+#write = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'a')
 
 Lines = read.readlines()
 #Lines = ["hello 200", "flower 300", "flour 400"]
