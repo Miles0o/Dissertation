@@ -1,1 +1,0 @@
-[{"word": "hello", "score": 2147483647, "tags": ["query", "pron:HH AH0 L OW1 "]}]
