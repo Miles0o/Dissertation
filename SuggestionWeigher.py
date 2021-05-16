@@ -2,11 +2,15 @@ import local_spellchecker
 from symspellpy import SymSpell, Verbosity
 
 def suggestion_compare(a, b):
-    a = int((a.split(' '))[1])
-    b = int((b.split(' '))[1])
-    if a > b:
+    a1 = a.distance()
+    a2 = a.count()
+    b1 = b.distance()
+    b2 = b.count()
+
+    if (a1 > b1) or (a1 == b1 and a2 > b2):
         return 1
-    if a == b:
+
+    if a1 == b1 and a2 == b2:
         return 0
     else:
         return-1
@@ -16,30 +20,31 @@ def suggestion_weigher(translator ,suggestion, suggestion_pho):
 
     #translate
     for word in suggestion_pho:
-        print(word)
         # term, distance, count
-        value = word.term()
+        value = word.term
         # true suggestions
         tru_sugg = translator[value]
         # add to suggestion list
         for words in tru_sugg:
-            master_suggestions_dic[words] = SuggestItem(words, word.distance(), word.count())
+            master_suggestions_dic[words] = SuggestItem(words, word.distance, word.count)
 
     # combine suggestion, if alredy present, increse frequency
     for word in suggestion:
-        entrie = word.term()
+        entrie = word.term
 
         if entrie in master_suggestions_dic:
-            master_suggestions_dic[entrie].count(int(entrie.count()) + int(master_suggestions_dic[entrie].count()))
+            count_value = (int(word.count) * int(master_suggestions_dic[entrie].count)
+                           * (5 - int(master_suggestions_dic[entrie].distance)))
+            master_suggestions_dic[entrie].count = count_value
         else:
-            master_suggestions_dic[word] = SuggestItem(words, word.distance(), word.count())
+            master_suggestions_dic[entrie] = SuggestItem(entrie, word.distance, word.count)
 
     master_suggestion = []
 
     # turn into a list to return
     for value in master_suggestions_dic:
-        master_suggestion.append(str(value + " " + master_suggestions_dic[value]))
-    master_suggestion.sort(suggestion_compare)
+        master_suggestion.append(master_suggestions_dic[value])
+    master_suggestion.sort()
     return master_suggestion
 
 class SuggestItem(object):
@@ -48,15 +53,34 @@ class SuggestItem(object):
         self._distance = distance
         self._count = count
 
+    def __eq__(self, other):
+        if self._distance == other.distance:
+            return self._count == other.count
+        else:
+            return self._distance == other.distance
+
+    def __lt__(self, other):
+        if self._distance == other.distance:
+            return self._count > other.count
+        else:
+            return self._distance < other.distance
+
+    def __str__(self):
+        return "{}, {}, {}".format(self._term, self._distance, self._count)
+
+    @property
     def term(self):
         return self._term
 
+    @property
     def distance(self):
         return self._distance
 
+    @property
     def count(self):
         return self._count
 
+    @count.setter
     def count(self, value):
         self._count = value
 

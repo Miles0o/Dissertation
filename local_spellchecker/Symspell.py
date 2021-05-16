@@ -14,10 +14,10 @@ class symSpell:
         self.sym_spell.load_dictionary(self.dictionary_path, term_index=0, count_index=1)
 
     # lookup suggestions for single-word input strings
-    def lookup(self, word):
+    def lookup(self, word, max):
         # max edit distance per lookup
         # (max_edit_distance_lookup <= max_dictionary_edit_distance)
-        suggestions = self.sym_spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=3)
+        suggestions = self.sym_spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=max)
         return suggestions
 
     def correctPhrase(self, sentance):
@@ -25,3 +25,4 @@ class symSpell:
         # (max_edit_distance_lookup <= max_dictionary_edit_distance)
         suggestions = self.sym_spell.lookup_compound(sentance, max_edit_distance=6)
         return suggestions
+
