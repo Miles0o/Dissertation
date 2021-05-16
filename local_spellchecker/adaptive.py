@@ -21,13 +21,12 @@ def adapt(word, correct_word):
 def frequency_shift(word):
 
     read = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'r')
-    write = open('D:\github\Dissertation\local_spellchecker\\before fix.txt', 'a')
     lines = read.readlines()
 
     total = 0
     for line in lines:
         words = line.split(' ')
-        total += int(word[1])
+        total += int(words[1])
 
     average_frequency = total/lines.count()
     line_number = 0
@@ -38,4 +37,6 @@ def frequency_shift(word):
         line_number += 1
         words = line.split(" ")
         if word is words[0]:
+            write = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'w')
             lines[line_number] = str(words[0] + " " + str(int(words[1]) + (average_frequency * k)))
+            write.writelines(lines)
