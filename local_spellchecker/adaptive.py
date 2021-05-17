@@ -1,18 +1,24 @@
 import json
 
+def adapt_controller(word, correct_word):
+    if correct_word.distance == 1:
+        frequency_shift(correct_word.term)
+    else:
+        adapt(word, correct_word)
+
 # if low on list add to translater and dictonery for refference ill pick below the top 5
 # word is the misspelt string
-# corrected would will be an SuggestItem object
+# corrected_word is a suggestitem object
 def adapt(word, correct_word):
 
     # add new entry to dictonery
     write = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'a')
-    write.write((word + " " + correct_word.count))
+    write.write(str(word + " " + str(300000)))
 
     # add new entrie to translator
     f = open('D:\github\Dissertation\local_spellchecker\\translator.json')
     translator = json.load(f)
-    translator[word] = {correct_word}
+    translator[word] = [str(correct_word.term)]
     with open('D:\github\Dissertation\local_spellchecker\\translator.json', 'w') as fp:
         json.dump(translator, fp)
 
@@ -20,7 +26,7 @@ def adapt(word, correct_word):
 # word is a string of the correct word
 def frequency_shift(word):
 
-    read = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'r')
+    read = open('D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt', 'r')
     lines = read.readlines()
 
     total = 0
@@ -37,6 +43,7 @@ def frequency_shift(word):
         line_number += 1
         words = line.split(" ")
         if word is words[0]:
-            write = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'w')
+            write = open('D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt', 'w')
             lines[line_number] = str(words[0] + " " + str(int(words[1]) + (average_frequency * k)))
             write.writelines(lines)
+

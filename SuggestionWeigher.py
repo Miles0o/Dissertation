@@ -31,6 +31,9 @@ def suggestion_weigher(translator ,suggestion, suggestion_pho):
     # combine suggestion, if alredy present, increse frequency
     for word in suggestion:
         entrie = word.term
+        if int(word.distance) <= int(master_suggestions_dic[entrie].distance):
+            master_suggestions_dic[entrie].distance = word.distance
+
 
         if entrie in master_suggestions_dic:
             count_value = (int(word.count) * int(master_suggestions_dic[entrie].count)
@@ -83,6 +86,10 @@ class SuggestItem(object):
     @count.setter
     def count(self, value):
         self._count = value
+
+    @distance.setter
+    def distance(self, distance):
+        self._distance = distance
 
 
 
