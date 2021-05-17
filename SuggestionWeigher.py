@@ -1,20 +1,6 @@
 import local_spellchecker
 from symspellpy import SymSpell, Verbosity
 
-def suggestion_compare(a, b):
-    a1 = a.distance()
-    a2 = a.count()
-    b1 = b.distance()
-    b2 = b.count()
-
-    if (a1 > b1) or (a1 == b1 and a2 > b2):
-        return 1
-
-    if a1 == b1 and a2 == b2:
-        return 0
-    else:
-        return-1
-
 def suggestion_weigher(translator ,suggestion, suggestion_pho):
     master_suggestions_dic = {}
 
@@ -31,11 +17,12 @@ def suggestion_weigher(translator ,suggestion, suggestion_pho):
     # combine suggestion, if alredy present, increse frequency
     for word in suggestion:
         entrie = word.term
-        if int(word.distance) <= int(master_suggestions_dic[entrie].distance):
-            master_suggestions_dic[entrie].distance = word.distance
-
 
         if entrie in master_suggestions_dic:
+
+            if int(word.distance) < int(master_suggestions_dic[entrie].distance):
+                master_suggestions_dic[entrie].distance = word.distance
+
             count_value = (int(word.count) * int(master_suggestions_dic[entrie].count)
                            * (5 - int(master_suggestions_dic[entrie].distance)))
             master_suggestions_dic[entrie].count = count_value
