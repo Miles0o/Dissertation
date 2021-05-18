@@ -19,7 +19,6 @@ Pon_Speller = thread2.result()
 thread1.done()
 thread2.done()
 
-
 thread1.cancel()
 thread2.cancel()
 
