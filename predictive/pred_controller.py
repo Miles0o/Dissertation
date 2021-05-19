@@ -16,6 +16,9 @@ def learn(input, output):
     if len(input_syl) == len(output_syl):
         index = 0
         for syl in input_syl:
+            if len(syl) is 1:
+                index += 1
+                continue
             if syl not in output_syl[index]:
                 if syl not in syl_corrections:
                     syl_corrections[syl] = [output_syl[index]]
@@ -48,8 +51,6 @@ def predict(input, output):
             index += 1
     return False
 
-
-
 # separate word into sylables based on vowls
 def split_word(word):
     split = []
@@ -65,8 +66,6 @@ def split_word(word):
         del split[0]
     return split
 
-
-
-print(predict("fluwer", "flower"))
+#print(predict("fluwer", "flower"))
 #learn("fluwer", "flower")
 

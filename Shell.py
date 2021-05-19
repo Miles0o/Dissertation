@@ -5,8 +5,6 @@ import json
 import concurrent.futures
 from local_spellchecker import adaptive
 
-
-
 API = API_talker.API_talker()
 
 executor = concurrent.futures.ThreadPoolExecutor()
