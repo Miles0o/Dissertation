@@ -3,8 +3,10 @@ import json
 def adapt_controller(word, correct_word):
     if correct_word.distance == 1:
         frequency_shift(correct_word.term)
+        print("frequency shift")
     else:
-        adapt(word, correct_word)
+        adapt(word, correct_word.term)
+        print("adapt word " + word)
 
 # if low on list add to translater and dictonery for refference ill pick below the top 5
 # word is the misspelt string
@@ -13,12 +15,12 @@ def adapt(word, correct_word):
 
     # add new entry to dictonery
     write = open('D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt', 'a')
-    write.write(str(word + " " + str(300000)))
+    write.write(str(word + " " + str(300000) + "\n"))
 
     # add new entrie to translator
     f = open('D:\github\Dissertation\local_spellchecker\\translator.json')
     translator = json.load(f)
-    translator[word] = [str(correct_word.term)]
+    translator[word] = [str(correct_word)]
     with open('D:\github\Dissertation\local_spellchecker\\translator.json', 'w') as fp:
         json.dump(translator, fp)
 
@@ -34,7 +36,7 @@ def frequency_shift(word):
         words = line.split(' ')
         total += int(words[1])
 
-    average_frequency = total/lines.count()
+    average_frequency = total/len(lines)
     line_number = 0
 
     # constant that determins how much a given word increses in frequency relative to average frequency

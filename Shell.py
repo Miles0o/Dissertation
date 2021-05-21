@@ -27,11 +27,11 @@ class shell:
         f = open('D:\github\Dissertation\local_spellchecker\\translator.json')
         self.translator = json.load(f)
 
-    def lookup(self, input_word):
+    def lookup(self, input_word, output_word):
         #print(API.API_call("so if i just type somthing out will you just work?"))
 
         # word to be corrected
-        input_word = 'flawer'
+        #input_word = 'flawer'
 
         # lookups
         suggestions_sym = self.speller.lookup(input_word, 2)
@@ -46,18 +46,28 @@ class shell:
                 sugg.count = int(sugg.count) * 1.5
 
         # user choice
-        option = 1
+        option = 0
+        found = 0
         for word in master_list:
-            print(str(option) + ": " + str(word))
+            if word.term == output_word:
+                found = 1
+                break
+            #print(str(option) + ": " + str(word))
             option += 1
-        option = int(input("Enter option: \n"))
-        correction = master_list[option-1]
-        pred_controller.learn(input_word, correction)
+
+        if found == 0:
+            if len(master_list) == 0:
+                print(input_word)
+
+            return input_word
+
+        correction = master_list[option]
+        pred_controller.learn(input_word, correction.term)
         threshold = 5
         if option > threshold:
             adaptive.adapt_controller(input_word, correction)
 
-        return correction
+        return correction.term
 
 
 
