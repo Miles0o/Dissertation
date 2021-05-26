@@ -5,21 +5,24 @@ import json
 import concurrent.futures
 from local_spellchecker import adaptive
 from predictive import pred_controller
+from Bing_API import Bing_conversion
+
 class shell:
 
     def __init__(self):
         API = API_talker.API_talker()
 
         executor = concurrent.futures.ThreadPoolExecutor()
-        thread1 = executor.submit(Symspell.symSpell,
-                                      ("D:\github\Dissertation\local_spellchecker\\frequency_dictionary_en_82_765.txt"))
-        self.Pon_Speller = Symspell.symSpell("D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt")
-        self.speller = thread1.result()
 
-        thread1.done()
+        thread2 = executor.submit(Symspell.symSpell,
+                                      ("D:\github\Dissertation\local_spellchecker\Phonetc_dictonary.txt"))
 
+        self.Pon_Speller = thread2.result()
+        f = open('D:\github\Dissertation\Bing_API\Bing_response.json')
+        self.responses = json.load(f)
 
-        thread1.cancel()
+        thread2.done()
+        thread2.cancel()
 
         # translator for phonetic spellchecker
         f = open('D:\github\Dissertation\local_spellchecker\\translator.json')
@@ -32,11 +35,14 @@ class shell:
         #input_word = 'flawer'
 
         # lookups
-        suggestions_sym = self.speller.lookup(input_word, 2)
+        if input_word in self.responses:
+            suggestions_Bing = Bing_conversion.convert(self.responses[input_word])
+        else:
+            suggestions_Bing = {}
         suggestions_pho = self.Pon_Speller.lookup(input_word, 5)
 
         # translator as well as lists of suggestions
-        master_list = SuggestionWeigher.suggestion_weigher(self.translator, suggestions_sym, suggestions_pho)
+        master_list = SuggestionWeigher.suggestion_weigher(self.translator, suggestions_Bing, suggestions_pho)
 
         # final prediction adjustments
         for sugg in master_list:

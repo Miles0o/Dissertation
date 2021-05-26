@@ -3,10 +3,10 @@ import json
 def adapt_controller(word, correct_word):
     if correct_word.distance == 1:
         frequency_shift(correct_word.term)
-        print("frequency shift")
+        print("Frequency shift: " + correct_word.term)
     else:
         adapt(word, correct_word.term)
-        print("adapt word " + word)
+        print("Adapt word: " + word)
 
 # if low on list add to translater and dictonery for refference ill pick below the top 5
 # word is the misspelt string

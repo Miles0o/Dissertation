@@ -57,7 +57,6 @@ christmas christmas
 journal journal
 diary diary
 diry diary
-chrismas christmas
 journal journal
 diary diary
 diary diary
@@ -75,7 +74,7 @@ th the
 christmas christmas
 hary harry
 wate wait
-un untill
+un until
 agen again
 christmas christmas
 gowing going
@@ -208,7 +207,6 @@ ambition ambition
 thought thought
 piolate pilot
 flower flower
-wasn’t /
 hesitated hesitated
 moment moment
 ralf ralph
@@ -619,7 +617,6 @@ divert divert
 league league
 ancient ancient
 passage passage
-alot a lot
 terrified terrified
 exciting exciting
 immediately immediately

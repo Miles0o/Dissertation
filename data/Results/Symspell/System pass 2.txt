@@ -4,7 +4,7 @@ idea idea
 ideas ideas
 thoughts thoughts
 hippopotamus hippopotamus
-becose becuase
+becose because
 future future
 improvements improvements
 implimentioation implementation
@@ -36,7 +36,7 @@ equation equation
 variety variety
 channel channel
 and and
-decause beacuse
+decause because
 guide guide
 fairie fairy
 implementation implementation
@@ -56,7 +56,7 @@ future future
 christmas christmas
 journal journal
 diary diary
-diry diarychrismas
+diry diary
 journal journal
 diary diary
 diary diary
@@ -74,7 +74,7 @@ the the
 christmas christmas
 harry harry
 wate wait
-un untill
+un until
 agen again
 christmas christmas
 going going
@@ -207,7 +207,6 @@ ambition ambition
 thought thought
 piolate pilot
 flower flower
-wasn’t /
 hesitated hesitated
 moment moment
 ralph ralph
@@ -618,7 +617,6 @@ divert divert
 league league
 aincent ancient
 passage passage
-alot a
 terrified terrified
 exciting exciting
 immediately immediately
